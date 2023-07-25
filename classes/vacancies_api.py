@@ -1,6 +1,5 @@
 import os
 import requests
-import json
 
 from abc import ABC, abstractmethod
 
@@ -8,6 +7,10 @@ class VacanciesApi(ABC):
     """Абстрактный класс"""
     @abstractmethod
     def get_vacancies(self, keyword: str):
+        pass
+
+    @abstractmethod
+    def get_formatted_vacancies(self):
         pass
 
 
@@ -84,7 +87,7 @@ class SuperJobApi(VacanciesApi):
         }
 
         params = {
-            "text": self.keyword,
+            "keyword": self.keyword,
             "page": 1,
             "count": 100
         }
@@ -93,9 +96,3 @@ class SuperJobApi(VacanciesApi):
         for element in data['objects']:
             self.vacancies.append(element)
         return self.vacancies
-
-
-# hh = HeadHunterApi('python')
-sj = SuperJobApi('python')
-sj.get_vacancies()
-print(sj.get_formatted_vacancies())

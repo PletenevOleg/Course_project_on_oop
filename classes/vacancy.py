@@ -5,9 +5,13 @@ class Vacancy:
         self.salary_to = salary_to
         self.salary_currency = salary_currency
         self.title = title
-        self.area = area
+        self.__area = area
         self.responsibility = responsibility
         self.url = url
+
+    @property
+    def area(self):
+        return self.__area
 
     def __gt__(self, other):
         return self.salary_from > other.salary_from

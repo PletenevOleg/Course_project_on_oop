@@ -1,6 +1,4 @@
 import json
-
-from classes.vacancies_api import HeadHunterApi, SuperJobApi
 from classes.vacancy import Vacancy
 
 class JSONSaver:
@@ -21,17 +19,3 @@ class JSONSaver:
             for vacancy in data:
                 self.vacancy_data.append(Vacancy(**vacancy))
             return self.vacancy_data
-    #
-    # def sorted_by(self):
-    #     """Сортировка вакансий"""
-    #     vacancy_data = self.select_all()
-    #     s_vacancies = sorted(vacancy_data)
-    #     return s_vacancies
-
-sj = SuperJobApi('python')
-sj.get_vacancies()
-op = sj.get_formatted_vacancies()
-jopa = JSONSaver(op)
-hui = jopa.select_all()
-for i in hui:
-    print(i)
